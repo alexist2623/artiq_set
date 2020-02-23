@@ -1,0 +1,13 @@
+Add user account with expected password [user/user].
+Enable the OpenSSH server:
+- "Add or remove programs"
+- "Manage optional features"
+- "Add a feature"
+- "OpenSSH Server"
+- "Install"
+- Open "Services"
+- Double-click the "OpenSSH SSH Server" service
+- Set "Startup type" to "Automatic"
+- "Start"
+- "Ok"
+Then press ENTER here to proceed with automatic installation

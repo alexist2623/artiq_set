@@ -1,0 +1,14 @@
+diff -Naur matterbridge-1.11.0.orig/bridge/mattermost/mattermost.go matterbridge-1.11.0/bridge/mattermost/mattermost.go
+--- matterbridge-1.11.0.orig/bridge/mattermost/mattermost.go	2018-06-19 06:28:16.000000000 +0800
++++ matterbridge-1.11.0/bridge/mattermost/mattermost.go	2019-04-26 20:40:11.831475087 +0800
+@@ -444,6 +444,10 @@
+ 		return true
+ 	}
+ 
++	if message.Username == "github" {
++		return true
++	}
++
+ 	// if the message has reactions don't repost it (for now, until we can correlate reaction with message)
+ 	if message.Post.HasReactions {
+ 		return true

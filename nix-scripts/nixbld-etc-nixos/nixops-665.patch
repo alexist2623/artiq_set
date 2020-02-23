@@ -1,0 +1,111 @@
+From e2015bbfcbcf7594824755e39f838d7aab258b6e Mon Sep 17 00:00:00 2001
+From: Graham Christensen <graham@grahamc.com>
+Date: Sat, 13 May 2017 08:53:07 -0400
+Subject: [PATCH] Support multiple versions of nixpkgs in one network
+
+Having a machine named foo, described as:
+
+    foo = { # ...snipped...
+      deployment.nix_path.nixpkgs = (builtins.filterSource
+        (path: type: type != "directory" || baseNameOf path != ".git")
+        ./../nixpkgs);
+    });
+
+will have the custom nixpkgs set in the `NIX_PATH` as
+`nixpkgs=path-to-custom-nixpkgs`.
+
+Note this does not work with foo = { config, ... }: {... machines, but
+having a second nix file in the network would work, and also:
+
+    let
+      canary = machine: {
+        deployment.nix_path.nixpkgs = (builtins.filterSource
+          (path: type: type != "directory" || baseNameOf path != ".git")
+          ./../nixpkgs);
+        imports = [machine];
+      };
+
+      machine = { ... }: {
+        # your machine config
+      };
+    in {
+      machineA = machine;
+      machineB = canary machine;
+    }
+
+Note that because this uses scopedImport, the nixops network and
+machines may use `import <nixpkgs>` and have a consistent view of
+nixpkgs.
+---
+ nix/eval-machine-info.nix | 35 ++++++++++++++++++++++++++++++++---
+ nix/options.nix           |  7 +++++++
+ 2 files changed, 39 insertions(+), 3 deletions(-)
+
+diff --git a/nix/eval-machine-info.nix b/nix/eval-machine-info.nix
+index 503b4c25d..085452cd4 100644
+--- a/nix/eval-machine-info.nix
++++ b/nix/eval-machine-info.nix
+@@ -39,13 +39,42 @@ rec {
+         # Get the configuration of this machine from each network
+         # expression, attaching _file attributes so the NixOS module
+         # system can give sensible error messages.
++
+         modules =
+           concatMap (n: optional (hasAttr machineName n)
+             { imports = [(getAttr machineName n)]; inherit (n) _file; })
+           networks;
+-      in
+-      { name = machineName;
+-        value = import <nixpkgs/nixos/lib/eval-config.nix> {
++
++        machineConfs =
++          concatMap (n: optional (hasAttr machineName n)
++            (getAttr machineName n))
++          networks;
++
++        nameToPath = attrs: name: {
++          prefix = name;
++          path = attrs."${name}";
++        };
++
++        attrsetToPaths = attrset: map (nameToPath attrset)
++          (builtins.attrNames attrset);
++
++        importSources =
++          (concatMap (module:
++              if (!builtins.isFunction module
++                  && builtins.hasAttr "deployment" module)
++                  && (builtins.hasAttr "nix_path" module.deployment)
++              then attrsetToPaths module.deployment.nix_path
++              else [])
++            machineConfs) ++ builtins.nixPath;
++
++        __nixPath = importSources;
++
++        machineImport = builtins.scopedImport {
++          inherit __nixPath;
++        };
++      in {
++        name = machineName;
++        value = machineImport <nixpkgs/nixos/lib/eval-config.nix> {
+           modules =
+             modules ++
+             defaults ++
+diff --git a/nix/options.nix b/nix/options.nix
+index 0866c3ab8..117b44a7b 100644
+--- a/nix/options.nix
++++ b/nix/options.nix
+@@ -103,6 +103,13 @@ in
+       '';
+     };
+ 
++    deployment.nix_path = mkOption {
++      default = {};
++      type = types.attrsOf types.str;
++      description = ''
++      '';
++    };
++
+     deployment.hasFastConnection = mkOption {
+       default = false;
+       type = types.bool;

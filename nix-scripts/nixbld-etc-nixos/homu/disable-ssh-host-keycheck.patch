@@ -1,0 +1,13 @@
+diff --git a/homu/git_helper.py b/homu/git_helper.py
+index 0f70c69..f53fb57 100755
+--- a/homu/git_helper.py
++++ b/homu/git_helper.py
+@@ -7,7 +7,7 @@ SSH_KEY_FILE = os.path.join(os.path.dirname(__file__), '../cache/key')
+ 
+ 
+ def main():
+-    args = ['ssh', '-i', SSH_KEY_FILE, '-S', 'none'] + sys.argv[1:]
++    args = ['ssh', '-o', 'StrictHostKeyChecking=no', '-i', SSH_KEY_FILE, '-S', 'none'] + sys.argv[1:]
+     os.execvp('ssh', args)
+ 
+ 

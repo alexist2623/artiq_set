@@ -1,0 +1,19 @@
+commit 86bf81c0b8a51bffa4b4b566e1caaac6f0e041d3
+Author: Sebastien Bourdeauducq <sb@m-labs.hk>
+Date:   Thu Mar 14 17:45:32 2019 +0800
+
+    add option to disable retries on transient failures
+
+diff --git a/src/hydra-queue-runner/build-remote.cc b/src/hydra-queue-runner/build-remote.cc
+index 69c430eb..bdbc808d 100644
+--- a/src/hydra-queue-runner/build-remote.cc
++++ b/src/hydra-queue-runner/build-remote.cc
+@@ -344,7 +344,7 @@ void State::buildRemote(ref<Store> destStore,
+                     break;
+                 case BuildResult::TransientFailure:
+                     result.stepStatus = bsFailed;
+-                    result.canRetry = true;
++                    result.canRetry = get(step->drv.env, "__hydraRetry", "1") == "1";
+                     result.errorMsg = "";
+                     break;
+                 case BuildResult::TimedOut:

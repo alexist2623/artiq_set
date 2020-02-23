@@ -1,0 +1,18 @@
+[package]
+authors = ["M-Labs"]
+name = "satman"
+version = "0.0.0"
+build = "build.rs"
+
+[lib]
+name = "satman"
+crate-type = ["staticlib"]
+path = "main.rs"
+
+[build-dependencies]
+build_misoc = { path = "../libbuild_misoc" }
+
+[dependencies]
+log = { version = "0.4", default-features = false }
+board_misoc = { path = "../libboard_misoc", features = ["uart_console", "log"] }
+board_artiq = { path = "../libboard_artiq" }
