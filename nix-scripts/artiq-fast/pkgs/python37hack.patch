@@ -1,0 +1,33 @@
+diff --git a/pythonparser/lexer.py b/pythonparser/lexer.py
+index a62eaf1..2c48d36 100644
+--- a/pythonparser/lexer.py
++++ b/pythonparser/lexer.py
+@@ -79,6 +79,7 @@ class Lexer:
+         (3, 4): _reserved_3_1,
+         (3, 5): _reserved_3_5,
+         (3, 6): _reserved_3_5,
++        (3, 7): _reserved_3_5,
+     }
+     """
+     A map from a tuple (*major*, *minor*) corresponding to Python version to
+@@ -102,6 +103,7 @@ class Lexer:
+         (3, 4): _string_prefixes_3_3,
+         (3, 5): _string_prefixes_3_3,
+         (3, 6): _string_prefixes_3_6,
++        (3, 7): _string_prefixes_3_6,
+     }
+     """
+     A map from a tuple (*major*, *minor*) corresponding to Python version to
+diff --git a/pythonparser/parser.py b/pythonparser/parser.py
+index 10c741d..f748695 100644
+--- a/pythonparser/parser.py
++++ b/pythonparser/parser.py
+@@ -419,7 +419,7 @@ class Parser(object):
+             self.expr_stmt_1     = self.expr_stmt_1__26
+             self.yield_expr      = self.yield_expr__26
+             return
+-        elif version in ((3, 0), (3, 1), (3, 2), (3, 3), (3, 4), (3, 5), (3, 6)):
++        elif version in ((3, 0), (3, 1), (3, 2), (3, 3), (3, 4), (3, 5), (3, 6), (3, 7)):
+             if version == (3, 0):
+                 self.with_stmt       = self.with_stmt__26 # lol
+             else:

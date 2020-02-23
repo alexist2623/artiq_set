@@ -1,0 +1,26 @@
+diff --git a/homu/git_helper.py b/homu/git_helper.py
+index 0f70c69..732230c 100755
+--- a/homu/git_helper.py
++++ b/homu/git_helper.py
+@@ -3,7 +3,7 @@
+ import sys
+ import os
+ 
+-SSH_KEY_FILE = os.path.join(os.path.dirname(__file__), '../cache/key')
++SSH_KEY_FILE = os.path.expanduser("~/cache/key")
+ 
+ 
+ def main():
+diff --git a/homu/main.py b/homu/main.py
+index 16b60a2..a2e109a 100644
+--- a/homu/main.py
++++ b/homu/main.py
+@@ -649,7 +649,7 @@ def git_push(git_cmd, branch, state):
+ 
+ 
+ def init_local_git_cmds(repo_cfg, git_cfg):
+-    fpath = 'cache/{}/{}'.format(repo_cfg['owner'], repo_cfg['name'])
++    fpath = '{}/cache/{}/{}'.format(os.path.expanduser("~"), repo_cfg['owner'], repo_cfg['name'])
+     url = 'git@github.com:{}/{}.git'.format(repo_cfg['owner'], repo_cfg['name'])  # noqa
+ 
+     if not os.path.exists(SSH_KEY_FILE):
