@@ -1,0 +1,62 @@
+cargo:rerun-if-changed=/home/alexist/intern/alexist/nix-scripts/artiq-fast/artiq_kc705/nist_clock/software/include/generated/rust-cfg
+cargo:rustc-cfg=has_rtio
+cargo:rustc-cfg=has_rtio_dma
+cargo:rustc-cfg=has_cri_con
+cargo:rustc-cfg=has_ddrphy
+cargo:rustc-cfg=has_dfii
+cargo:rustc-cfg=has_ethmac
+cargo:rustc-cfg=has_ethphy
+cargo:rustc-cfg=has_i2c
+cargo:rustc-cfg=has_identifier
+cargo:rustc-cfg=has_kernel_cpu
+cargo:rustc-cfg=has_leds
+cargo:rustc-cfg=has_rtio_analyzer
+cargo:rustc-cfg=has_rtio_core
+cargo:rustc-cfg=has_rtio_crg
+cargo:rustc-cfg=has_rtio_moninj
+cargo:rustc-cfg=has_spiflash
+cargo:rustc-cfg=has_timer0
+cargo:rustc-cfg=has_timer1
+cargo:rustc-cfg=has_tmpu
+cargo:rustc-cfg=has_uart
+cargo:rustc-cfg=has_uart_phy
+cargo:rustc-cfg=clock_frequency="125000000"
+cargo:rustc-cfg=ddrphy_wlevel
+cargo:rustc-cfg=has_dds
+cargo:rustc-cfg=has_rtio_clock_switch
+cargo:rustc-cfg=has_rtio_log
+cargo:rustc-cfg=i2c_bus_count="1"
+cargo:rustc-cfg=identifier_str="6.7190.2a909839.beta;nist_clock"
+cargo:rustc-cfg=l2_size="131072"
+cargo:rustc-cfg=rtio_log_channel="28"
+cargo:rustc-cfg=soc_platform="kc705"
+cargo:rustc-cfg=spiflash_page_size="256"
+cargo:rustc-cfg=spiflash_sector_size="65536"
+cargo:rerun-if-changed=or1k/vectors.S
+TARGET = Some("or1k-unknown-none")
+OPT_LEVEL = Some("0")
+TARGET = Some("or1k-unknown-none")
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("or1k-unknown-none")
+TARGET = Some("or1k-unknown-none")
+HOST = Some("x86_64-unknown-linux-gnu")
+CC_or1k-unknown-none = None
+CC_or1k_unknown_none = Some("clang")
+TARGET = Some("or1k-unknown-none")
+HOST = Some("x86_64-unknown-linux-gnu")
+CFLAGS_or1k-unknown-none = None
+CFLAGS_or1k_unknown_none = Some("-Os -mhard-mul -mhard-div -mror -mffl1 -maddc -fomit-frame-pointer -ffunction-sections -Wall -fno-builtin -nostdinc -I/nix/store/4lkrk71sr68r5y9f6kwgix750j6svsxa-python3-3.7.5-env/lib/python3.7/site-packages/misoc/software/include/base -I/nix/store/4lkrk71sr68r5y9f6kwgix750j6svsxa-python3-3.7.5-env/lib/python3.7/site-packages/misoc/software/include -I/nix/store/4lkrk71sr68r5y9f6kwgix750j6svsxa-python3-3.7.5-env/lib/python3.7/site-packages/misoc/common -I/home/alexist/intern/alexist/nix-scripts/artiq-fast/artiq_kc705/nist_clock/software/include -fexceptions -Wstrict-prototypes -Wold-style-definition -Wmissing-prototypes -Werror=incompatible-pointer-types -I/nix/store/4lkrk71sr68r5y9f6kwgix750j6svsxa-python3-3.7.5-env/lib/python3.7/site-packages/misoc/software/libunwind -I/nix/store/4lkrk71sr68r5y9f6kwgix750j6svsxa-python3-3.7.5-env/lib/python3.7/site-packages/misoc/software/libunwind/../unwinder/include -I/nix/store/4lkrk71sr68r5y9f6kwgix750j6svsxa-python3-3.7.5-env/lib/python3.7/site-packages/misoc/software/include/dyld")
+DEBUG = Some("true")
+running: "clang" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-Os" "-mhard-mul" "-mhard-div" "-mror" "-mffl1" "-maddc" "-fomit-frame-pointer" "-ffunction-sections" "-Wall" "-fno-builtin" "-nostdinc" "-I/nix/store/4lkrk71sr68r5y9f6kwgix750j6svsxa-python3-3.7.5-env/lib/python3.7/site-packages/misoc/software/include/base" "-I/nix/store/4lkrk71sr68r5y9f6kwgix750j6svsxa-python3-3.7.5-env/lib/python3.7/site-packages/misoc/software/include" "-I/nix/store/4lkrk71sr68r5y9f6kwgix750j6svsxa-python3-3.7.5-env/lib/python3.7/site-packages/misoc/common" "-I/home/alexist/intern/alexist/nix-scripts/artiq-fast/artiq_kc705/nist_clock/software/include" "-fexceptions" "-Wstrict-prototypes" "-Wold-style-definition" "-Wmissing-prototypes" "-Werror=incompatible-pointer-types" "-I/nix/store/4lkrk71sr68r5y9f6kwgix750j6svsxa-python3-3.7.5-env/lib/python3.7/site-packages/misoc/software/libunwind" "-I/nix/store/4lkrk71sr68r5y9f6kwgix750j6svsxa-python3-3.7.5-env/lib/python3.7/site-packages/misoc/software/libunwind/../unwinder/include" "-I/nix/store/4lkrk71sr68r5y9f6kwgix750j6svsxa-python3-3.7.5-env/lib/python3.7/site-packages/misoc/software/include/dyld" "-g" "--target=or1k-unknown-none" "-Wall" "-Wextra" "-o" "/home/alexist/intern/alexist/nix-scripts/artiq-fast/artiq_kc705/nist_clock/software/ksupport/cargo/or1k-unknown-none/debug/build/board_misoc-79c33c4d5453e45d/out/or1k/vectors.o" "-c" "or1k/vectors.S"
+exit code: 0
+TARGET = Some("or1k-unknown-none")
+TARGET = Some("or1k-unknown-none")
+HOST = Some("x86_64-unknown-linux-gnu")
+AR_or1k-unknown-none = None
+AR_or1k_unknown_none = None
+TARGET_AR = Some("or1k-linux-ar")
+running: "or1k-linux-ar" "crs" "/home/alexist/intern/alexist/nix-scripts/artiq-fast/artiq_kc705/nist_clock/software/ksupport/cargo/or1k-unknown-none/debug/build/board_misoc-79c33c4d5453e45d/out/libvectors.a" "/home/alexist/intern/alexist/nix-scripts/artiq-fast/artiq_kc705/nist_clock/software/ksupport/cargo/or1k-unknown-none/debug/build/board_misoc-79c33c4d5453e45d/out/or1k/vectors.o"
+exit code: 0
+TARGET = Some("or1k-unknown-none")
+cargo:rustc-link-lib=static=vectors
+cargo:rustc-link-search=native=/home/alexist/intern/alexist/nix-scripts/artiq-fast/artiq_kc705/nist_clock/software/ksupport/cargo/or1k-unknown-none/debug/build/board_misoc-79c33c4d5453e45d/out

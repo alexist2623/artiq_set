@@ -1,0 +1,1 @@
+{"rustc":8132355113173147978,"features":"","target":0,"profile":0,"path":0,"deps":[[12504882585136794330,"build_script_build",false,6548543732876731009]],"local":[{"RerunIfChanged":{"output":"output","paths":["/home/alexist/intern/alexist/nix-scripts/artiq-fast/artiq_kasli/tester/software/include/generated/rust-cfg"]}}],"rustflags":[],"metadata":0}

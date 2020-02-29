@@ -1,0 +1,1 @@
+{"rustc":8132355113173147978,"features":"[]","target":12396366720307268670,"profile":10234870291008511582,"path":6565907181880069560,"deps":[],"local":[{"Precalculated":"0.1.3"}],"rustflags":["-Ctarget-feature=+mul,+div,+ffl1,+cmov,+addc","-Crelocation-model=static","-Copt-level=s","-Cpanic=unwind"],"metadata":8462187951337715540}

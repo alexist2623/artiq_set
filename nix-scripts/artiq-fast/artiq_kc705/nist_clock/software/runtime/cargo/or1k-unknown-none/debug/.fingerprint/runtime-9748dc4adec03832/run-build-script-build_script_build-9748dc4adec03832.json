@@ -1,0 +1,1 @@
+{"rustc":8132355113173147978,"features":"","target":0,"profile":0,"path":0,"deps":[[7433043745860545819,"build_script_build",false,8794215550441413719]],"local":[{"RerunIfChanged":{"output":"output","paths":["/home/alexist/intern/alexist/nix-scripts/artiq-fast/artiq_kc705/nist_clock/software/include/generated/rust-cfg"]}}],"rustflags":[],"metadata":0}

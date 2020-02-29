@@ -1,0 +1,1 @@
+{"rustc":8132355113173147978,"features":"","target":0,"profile":0,"path":0,"deps":[[762740647888626363,"build_script_build",false,6651648330113495]],"local":[{"RerunIfChanged":{"output":"output","paths":["/home/alexist/intern/alexist/nix-scripts/artiq-fast/artiq_kc705/nist_clock/software/include/generated/rust-cfg","or1k/vectors.S"]}}],"rustflags":[],"metadata":0}
